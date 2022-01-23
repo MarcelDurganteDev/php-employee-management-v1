@@ -1,0 +1,12 @@
+/* BASIC */
+
+.body {
+    margin: 30px;
+}
+
+.my-container {
+    width: 450px;
+    margin: auto;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
