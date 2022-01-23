@@ -18,8 +18,9 @@
     <?php
     include_once('./assets/html/header.php');
     ?>
+
     <div class="container form-control my-container">
-        <form class="needs-validation m-4" novalidate>
+        <form action="./src/library/loginController.php" class="needs-validation m-4" novalidate>
             <div class="form-row">
                 <div class="col-md mb-3">
                     <label for="username">Username</label>
@@ -44,9 +45,6 @@
             <button class="btn btn-primary mt-2" type="submit">Enviar</button>
         </form>
     </div>
-
-
-
 
     <?php
     include_once('./assets/html/footer.php');
