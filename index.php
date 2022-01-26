@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emp. Management V1</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- login CSS -->
     <link rel="stylesheet" href="./assets/css/login.css">
 </head>
@@ -19,12 +20,30 @@
     include_once('./assets/html/header.php');
     ?>
 
+    <?php
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    } // initialize user session
+    if (isset($_SESSION['msg']) && !empty($_SESSION['msg'])) {
+        if ($_SESSION['msg'] == "success") {
+            echo '<div id="alert" class="alert alert-danger w-25 mx-auto text-center" data-dismiss="alert" aria-label="Close"
+            role="alert">Login successful</div>';
+        } else if ($_SESSION['msg'] == "error") {
+            echo '<div id="alert" class="alert alert-danger w-25 mx-auto text-center" data-dismiss="alert" aria-label="Close"
+            role="alert">Login error</div>';
+        }
+        unset($_SESSION['msg']);
+    }
+
+    ?>
+
     <div class="container form-control my-container">
-        <form action="./src/library/loginController.php" class="needs-validation m-4" novalidate>
+        <form action="./src/library/loginController.php" method="POST" class="needs-validation m-4" novalidate>
             <div class="form-row">
                 <div class="col-md mb-3">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Username" value="" required>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username"
+                        value="" required>
                     <div class="valid-feedback">
                         All right!
                     </div>
@@ -33,7 +52,8 @@
                     </div>
 
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" value="" required>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                        value="" required>
                     <div class="valid-feedback">
                         All right!
                     </div>
@@ -45,6 +65,7 @@
             <button class="btn btn-primary mt-2" type="submit">Enviar</button>
         </form>
     </div>
+    <div id="alert"></div>
 
     <?php
     include_once('./assets/html/footer.php');
@@ -53,10 +74,20 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="./assets/js/login.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+
 
 </body>
 
 </html>
+
+<!-- <form action="./src/library/loginController.php" method="post"></form> -->
